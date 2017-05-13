@@ -1,0 +1,47 @@
+a<!-- This is the main page where all the other pages are called for the single page view -->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<!-- All the files that need to be included are mentioned here -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<script src="http://code.angularjs.org/1.4.9/angular-route.js"></script>
+        <script src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+		<link rel="stylesheet" href="css/style.css"></link> <!-- This file contains all the style sheets-->
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<script src="js/routes.js"></script>    <!-- This file defines the ng-routes that will be used. -->
+		<script src="js/control.js"></script>    <!-- This file contains the controllers description and directive -->
+		<style>
+			body{
+				background-image: url("./img/bg.jpg");
+				background-repeat: no-repeat;
+				background-size: 1680px 1080px;
+			}
+		</style>
+	</head>
+	  
+  <body ng-app="myApp">
+  <!-- The navigation bar has been coded here -->
+		  <nav class="navbar navbar-inverse" >
+			<div class="nav navbar-fixed-top navbar-custom">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#/">FYLE</a>
+					</div>
+					
+					<div class="collapse navbar-collapse" id="myNavbar" ng-app="myapp">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="#/mlist"><span class="glyphicon glyphicon-music"></span> Movie List</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav> 
+<!-- This division is used for viewing the other pages that will be called in this page -->	
+	<div ng-view=""></div>
+  </body>
+
+</html>
