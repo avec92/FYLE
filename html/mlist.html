@@ -17,13 +17,33 @@
                             <button id="search-by-title-button" type="button" class="btn-sm btn-primary" ng-click="search()">Search</button>
                             <button id="search-by-title-reset" type="reset" class="btn-sm">Reset</button>
                         </div>
-                        <div class="hide" id="search-by-title-request">
-                            <span ng-show="response==true" ng-repeat="movieResults in movie">
-                                 <h3>Title: {{title}}</h3>
-                                 <p><strong>Poster: </strong>{{poster}} </p>
-                                <p><strong>Year: </strong>{{year}} </p>
-                                  <p><strong>IMDB ID: </strong>{{imdbid}} </p>
-                                  <p><strong>Type: </strong>{{type}}</p>                       
+                        <div ng-show="show" id="search-by-title-request">
+                            <span ng-show="status==200" ng-repeat="movieResults in movie">
+                                <table id="results">
+                                    <tr>
+                                        <td>
+                                            <h3>Title:</h3>
+                                        </td>
+                                        <td>
+                                            <h3> {{title}}</h3>
+                                        </td>
+                                        <tr>
+                                            <td><strong>Poster: </strong></td>
+                                            <td><img src="{{poster}}" alt="No Poster available"> </td>
+                                    </tr>
+                                    <tr>
+                                        <td> <strong>Year: </strong></td>
+                                        <td>{{year}}</td>
+                                    </tr>
+                                    <tr>    
+                                        <td><strong>IMDB ID: </strong></td>
+                                        <td>{{imdbid}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Type: </strong></td>
+                                        <td>{{type}}</td>
+                                     </tr>
+                                </table>
                             </span>
                             <span ng-show="status!=200&&status!=400&&status!=401"><b>Status:</b>{{status}}<br/><b>It seems we don't have what you are looking for. Please try to search for something else.</b></span>                        
                     </div>
