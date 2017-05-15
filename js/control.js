@@ -3,25 +3,27 @@
 // Add student Cotnroller
 app.controller('searchController', ['$scope','$http', function($scope,$http,$window,$location){
     // Storing user details
-		
-		
+		$scope.movie=[];
+		$scope.show=false;
 			// Calling HTTP response
-		function success(response){
-				        //$scope.status = response.Response;
-                        $scope.title=response.Title;
-                        $scope.year=response.Year;
-                        $scope.imdbid=response.imdbID;
-                        $scope.type=response.Type;
-                        $scope.poster=response.Poster;
+		function success(response, status){
+				        $scope.status = status;
+                        $scope.movie=response;
+                        $scope.movie.title=response.Title;
+                        $scope.movie.year=response.Year;
+                        $scope.movie.imdbid=response.imdbID;
+                        $scope.movie.type=response.Type;
+                        $scope.movie.poster=response.Poster;
 		}	
         
-    function error(){
-        $scope.status = response.status;
+    function error(status){
+        $scope.status = status;
     }
 
 	
 		// function calling all other functions
    $scope.search = function() {
+       $scope.show=true;
        if(($scope.t) && (!$scope.y) ){
        
             $http({
@@ -30,11 +32,11 @@ app.controller('searchController', ['$scope','$http', function($scope,$http,$win
 					url : 'http://www.omdbapi.com/?t='+$scope.t+'&type=movie'
 				  }).then(function mySuccess(response) {     //function for taking actions when the status code is 200 and authentication is a success. 
 						// Binds messages to display to html pages	
-                        success(response.data);
+                        success(response.data,response.status);
 						
 					}).catch(function error(response) {           //function for taking actions when response is an error.
 						// Binds messages to display to html pages						
-						error(response.data);
+						error(response.status);
 					});
                 }
        if(($scope.y) && (!$scope.t) ){
@@ -45,11 +47,11 @@ app.controller('searchController', ['$scope','$http', function($scope,$http,$win
 					url : 'http://www.omdbapi.com/?y='+$scope.y+'&type=movie'
 				  }).then(function mySuccess(response) {     //function for taking actions when the status code is 200 and authentication is a success. 
 						// Binds messages to display to html pages	
-                        success(response.data);
+                        success(response.data,response.status);
 						
 					}).catch(function error(response) {           //function for taking actions when response is an error.
 						// Binds messages to display to html pages						
-						error(response.data);
+						error(response.status);
 					});
                 }
        if(($scope.t) && ($scope.y)){
@@ -59,11 +61,11 @@ app.controller('searchController', ['$scope','$http', function($scope,$http,$win
 					url : 'http://www.omdbapi.com/?t='+$scope.t+'&y='+$scope.y+'&type=movie'
 				  }).then(function mySuccess(response) {     //function for taking actions when the status code is 200 and authentication is a success. 
 						// Binds messages to display to html pages	
-                        success(response.data);
+                        success(response.data,response.status);
 						
 					}).catch(function error(response) {           //function for taking actions when response is an error.
 						// Binds messages to display to html pages						
-						error(response.data);
+						error(response.status);
 					});
                 }
        
