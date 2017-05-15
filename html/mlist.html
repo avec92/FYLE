@@ -1,31 +1,24 @@
 <!-- This page is specifically used for creating the add and fetch student data form -->
-<div id="container_demo" ng-controller="addController" onload="init()">
+<div id="container_demo" ng-controller="searchController">
 <div id="container_demo" >
     <div id="wrapper">
         <div id="add" class="animate form">
-                <form class="form-search" id="searchByTitleForm" autocomplete="on" onsubmit="return false;" ng-model="movie-list">
+                <form class="form-search" id="searchByTitleForm" autocomplete="on" onsubmit="return false;">
                         <fieldset>
                             <legend>Find a movie</legend>
                         </fieldset>
                         <div>
                             <label class="control-label" for="t">Title:</label>
-                            <input type="text" id="t" name="t" class="input-small" style="width: 150px;">
+                            <input type="text" id="t" name="t" class="input-small" style="width: 150px;" ng-model="movie.t">
                             &nbsp;&nbsp;
                             <label class="control-label" for="y">Year:</label>
-                            <input type="text" id="y" name="y" class="input-small" style="width: 100px;">
+                            <input type="text" id="y" name="y" class="input-small" style="width: 100px;" ng-model="movie.y">
                             &nbsp;&nbsp;
-                            <label class="control-label">Type:</label>
-                            <select id="type" name="type" style="width: 100px;">
-                                <option value="" selected="">Movie</option>
-                                <option value="series">series</option>
-                                <option value="episode">episode</option>
-                            </select>
-                            &nbsp;&nbsp;
-                            <button id="search-by-title-button" type="button" class="btn-sm btn-primary" ng-click="parameters()">Search</button>
+                            <button id="search-by-title-button" type="button" class="btn-sm btn-primary" ng-click="search()">Search</button>
                             <button id="search-by-title-reset" type="reset" class="btn-sm">Reset</button>
                         </div>
                         <div class="hide" id="search-by-title-request">
-                            <span ng-show="status==200">
+                            <span ng-show="response==true" ng-repeat="movieResults in movie">
                                  <h3>Title: {{movie.title}}</h3>
                                  <p><strong>Poster: </strong>{{movie.poster}} </p>
                                 <p><strong>Year: </strong>{{movie.year}} </p>
