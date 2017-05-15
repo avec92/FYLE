@@ -3,19 +3,16 @@
 // Add student Cotnroller
 app.controller('searchController', ['$scope','$http', function($scope,$http,$window,$location){
     // Storing user details
-	$scope.movie={
-				t:null,
-				y:null
-			}	
+		
 		
 			// Calling HTTP response
 		function success(response){
 				        //$scope.status = response.Response;
-                        $scope.movie.title=response.Title;
-                        $scope.movie.year=response.Year;
-                        $scope.movie.imdbid=response.imdbID;
-                        $scope.movie.type=response.Type;
-                        $scope.movie.poster=response.Poster;
+                        $scope.title=response.Title;
+                        $scope.year=response.Year;
+                        $scope.imdbid=response.imdbID;
+                        $scope.type=response.Type;
+                        $scope.poster=response.Poster;
 		}	
         
     function error(){
@@ -30,7 +27,7 @@ app.controller('searchController', ['$scope','$http', function($scope,$http,$win
             $http({
 					method : 'GET',
 					headers: {'Content-Type': 'application/json'},
-					url : 'http://www.omdbapi.com/?t='+$scope.movie.t+'&type=movie'
+					url : 'http://www.omdbapi.com/?t='+$scope.t+'&type=movie'
 				  }).then(function mySuccess(response) {     //function for taking actions when the status code is 200 and authentication is a success. 
 						// Binds messages to display to html pages	
                         success(response.data);
@@ -45,7 +42,7 @@ app.controller('searchController', ['$scope','$http', function($scope,$http,$win
             $http({
 					method : 'GET',
 					headers: {'Content-Type': 'application/json'},
-					url : 'http://www.omdbapi.com/?y='+$scope.movie.y+'&type=movie'
+					url : 'http://www.omdbapi.com/?y='+$scope.y+'&type=movie'
 				  }).then(function mySuccess(response) {     //function for taking actions when the status code is 200 and authentication is a success. 
 						// Binds messages to display to html pages	
                         success(response.data);
@@ -54,13 +51,12 @@ app.controller('searchController', ['$scope','$http', function($scope,$http,$win
 						// Binds messages to display to html pages						
 						error(response.data);
 					});
-           console.log('http://www.omdbapi.com/?y='+$scope.movie.y+'&type=movie');
                 }
        if(($scope.t) && ($scope.y)){
               $http({
 					method : 'GET',
 					headers: {'Content-Type': 'application/json'},
-					url : 'http://www.omdbapi.com/?t='+$scope.movie.t+'&y='+$scope.movie.y+'&type=movie'
+					url : 'http://www.omdbapi.com/?t='+$scope.t+'&y='+$scope.y+'&type=movie'
 				  }).then(function mySuccess(response) {     //function for taking actions when the status code is 200 and authentication is a success. 
 						// Binds messages to display to html pages	
                         success(response.data);
